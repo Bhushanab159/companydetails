@@ -9,15 +9,22 @@ import "./UserInfo.css"
 export default function UserInfo() {
   const data = Transfer();
   console.log(data);
-  const [user,setUser] = useState({});
+  const [user,setUser] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    website: "",
+
+  });
+
   const params = useParams();
 
   useEffect(()=>{
     const ans = data.value.filter((ans)=>{
       return ans.id==params.id
     })
-    setUser(ans[0]);
-  },[])
+    setUser({...user, ...ans[0]});
+  },[user])
   console.log(user);
   return (   
    <>
